@@ -10,6 +10,13 @@ public class Meteor : MonoBehaviour
 
     void Start()
     {
+        // Make sure this object has the Meteor tag
+        if (gameObject.tag != "Meteor")
+        {
+            gameObject.tag = "Meteor";
+            Debug.Log("Set meteor tag on: " + gameObject.name);
+        }
+        
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -40,6 +47,7 @@ public class Meteor : MonoBehaviour
         }
         else if (collision.CompareTag("Projectile"))
         {
+            Debug.Log("Meteor hit by projectile!");
             TakeDamage(1);
             Destroy(collision.gameObject);
         }
@@ -48,6 +56,7 @@ public class Meteor : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        Debug.Log("Meteor took damage! Health: " + health);
         if (health <= 0)
         {
             Destroy(gameObject);

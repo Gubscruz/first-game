@@ -13,6 +13,13 @@ public class PlayerMovement : MonoBehaviour
     public Transform firePoint;
     private float nextFireTime = 0f;
     private bool canShoot = true;
+    
+    [Header("Audio")]
+    public AudioClip shootSound;
+    public AudioClip collectSound;
+    public AudioClip meteorHitSound;
+    [Range(0f, 1f)]
+    public float soundVolume = 0.5f;
 
     void Start()
     {
@@ -35,6 +42,13 @@ public class PlayerMovement : MonoBehaviour
                 Debug.LogError("No main camera found! Please tag a camera as MainCamera.");
                 canShoot = false;
             }
+        }
+        
+        // Make sure we have an audio source
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.volume = soundVolume;
         }
     }
 
@@ -100,6 +114,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 projectileComponent.Launch(shootDirection);
                 Debug.Log("Shot fired at " + Time.time);
+                
+                // Play shoot sound
+                PlaySound(shootSound);
             }
             else
             {
@@ -111,13 +128,25 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogError("Projectile prefab is not assigned!");
         }
     }
+    
+    void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, soundVolume);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Coletavel"))
         {
-            audioSource.Play();
+            PlaySound(collectSound);
             Destroy(collision.gameObject);
+        }
+        else if (collision.CompareTag("Meteor"))
+        {
+            PlaySound(meteorHitSound);
         }
     }
 }

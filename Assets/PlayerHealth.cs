@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class PlayerHealth : MonoBehaviour
     public float invincibilityDuration = 1.0f;
     private bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
+    
+    [Header("Game Over")]
+    public string gameOverSceneName = "GameOver"; // Name of your GameOver scene
 
     void Start()
     {
@@ -83,6 +87,45 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Player morreu.");
+        
+        // Store score data for the GameOver scene
+        if (ScoreManager.instance != null)
+        {
+            // Get the private score field using reflection
+            var scoreField = typeof(ScoreManager).GetField("score", 
+                System.Reflection.BindingFlags.NonPublic | 
+                System.Reflection.BindingFlags.Instance);
+                
+            if (scoreField != null)
+            {
+                GameOverData.score = (int)scoreField.GetValue(ScoreManager.instance);
+            }
+        }
+        
+        // Store time data
+        Chronometer chronometer = FindObjectOfType<Chronometer>();
+        if (chronometer != null)
+        {
+            // Get the private elapsedTime field using reflection
+            var timeField = typeof(Chronometer).GetField("elapsedTime", 
+                System.Reflection.BindingFlags.NonPublic | 
+                System.Reflection.BindingFlags.Instance);
+                
+            if (timeField != null)
+            {
+                GameOverData.timeAtDeath = (float)timeField.GetValue(chronometer);
+            }
+        }
+        else
+        {
+            // Fallback if chronometer not found
+            GameOverData.timeAtDeath = Time.time;
+        }
+        
+        // Load the GameOver scene
+        SceneManager.LoadScene(gameOverSceneName);
+        
+        // Destroy the player object
         Destroy(gameObject);
     }
 }

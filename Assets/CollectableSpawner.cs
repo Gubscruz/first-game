@@ -54,7 +54,7 @@ public class CollectibleSpawner : MonoBehaviour
         float randomY = Random.Range(bottomLeft.y, topRight.y);
 
         // Assume collectibles are to be placed at z = 0.
-        Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
+        Vector3 spawnPosition = new Vector3(randomX, randomY, 300);
         Instantiate(collectiblePrefab, spawnPosition, Quaternion.identity);
     }
 }

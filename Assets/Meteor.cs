@@ -21,7 +21,9 @@ public class Meteor : MonoBehaviour
     {
         if (playerTransform != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+            // Cria um alvo que preserva o valor de z do meteoro
+            Vector3 targetPosition = new Vector3(playerTransform.position.x, playerTransform.position.y, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         }
     }
 

@@ -37,7 +37,7 @@ public class MeteorSpawner : MonoBehaviour
         Vector2 topRight = mainCamera.ViewportToWorldPoint(new Vector2(1, 1));
         float randomX = Random.Range(bottomLeft.x, topRight.x);
         float randomY = Random.Range(bottomLeft.y, topRight.y);
-        Vector2 spawnPosition = new Vector2(randomX, randomY);
+        Vector3 spawnPosition = new Vector3(randomX, randomY, 36f);
         GameObject meteor = Instantiate(meteorPrefab, spawnPosition, Quaternion.identity);
         Meteor meteorScript = meteor.GetComponent<Meteor>();
         if (meteorScript != null)

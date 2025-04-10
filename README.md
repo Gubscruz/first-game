@@ -13,20 +13,20 @@
 ## Controles
 
 - **Movimentação:** Utilize as teclas de setas ou WASD para mover a nave.
-- **Tiro:** Clique no botao esquerdo do mouse para atirar projéteis e destruir meteoros.
+- **Tiro:** Clique no botão esquerdo do mouse para atirar projéteis e destruir meteoros.
 
 ## Créditos dos Assets
 
 ### Gráficos
 
 - **Nave do Jogador e Mísseis:**  
-  - Sprites criados por [Foozle] ([https://foozlecc.itch.io/void-main-ship]).
+  - Sprites criados por [Foozle](https://foozlecc.itch.io/void-main-ship).
 - **Diamantes (Colecionáveis):**  
-  - Imagem fornecida por [Pixel art gems] ([https://ma9ici4n.itch.io/gems]).
+  - Imagem fornecida por [Pixel art gems](https://ma9ici4n.itch.io/gems).
 - **Elementos de UI:**  
-  - ChatGPT (telas)
+  - Criados com auxílio do ChatGPT (telas).
 
 ### Áudio
 
 - **Música de Fundo e Efeitos Sonoros:**  
-  - Efeitos sonoros e música de fundo obtidos de [Pixabay] ([https://pixabay.com/]).
+  - Efeitos sonoros e música de fundo obtidos de [Pixabay](https://pixabay.com/).

@@ -154,8 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreValue: 1
   autoAttractToPlayer: 1
-  attractSpeed: 400
-  attractDistance: 200
+  attractSpeed: 200
+  attractDistance: 300
 --- !u!61 &1061805293044484000
 BoxCollider2D:
   m_ObjectHideFlags: 0
